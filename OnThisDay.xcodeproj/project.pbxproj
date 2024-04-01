@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		460DF07F2BBA652600EA5E6C /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460DF07E2BBA652600EA5E6C /* TableView.swift */; };
+		460DF0812BBA653600EA5E6C /* DayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460DF0802BBA653600EA5E6C /* DayPicker.swift */; };
+		460DF0832BBA654F00EA5E6C /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460DF0822BBA654F00EA5E6C /* PreferencesView.swift */; };
+		460DF0852BBA657600EA5E6C /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460DF0842BBA657600EA5E6C /* Menus.swift */; };
+		460DF0872BBA657E00EA5E6C /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460DF0862BBA657E00EA5E6C /* Toolbar.swift */; };
+		460DF0892BBA65BC00EA5E6C /* DisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460DF0882BBA65BC00EA5E6C /* DisplayMode.swift */; };
+		460DF08B2BBA6D9E00EA5E6C /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 460DF08A2BBA6D9E00EA5E6C /* Credits.html */; };
 		468634542BB6669200A1C514 /* OnThisDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468634532BB6669200A1C514 /* OnThisDayApp.swift */; };
 		468634562BB6669200A1C514 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468634552BB6669200A1C514 /* ContentView.swift */; };
 		468634582BB6669400A1C514 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 468634572BB6669400A1C514 /* Assets.xcassets */; };
@@ -24,7 +31,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		468634502BB6669200A1C514 /* OnThisDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnThisDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		460DF07E2BBA652600EA5E6C /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		460DF0802BBA653600EA5E6C /* DayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPicker.swift; sourceTree = "<group>"; };
+		460DF0822BBA654F00EA5E6C /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		460DF0842BBA657600EA5E6C /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
+		460DF0862BBA657E00EA5E6C /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
+		460DF0882BBA65BC00EA5E6C /* DisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMode.swift; sourceTree = "<group>"; };
+		460DF08A2BBA6D9E00EA5E6C /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		468634502BB6669200A1C514 /* On This Day.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On This Day.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		468634532BB6669200A1C514 /* OnThisDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnThisDayApp.swift; sourceTree = "<group>"; };
 		468634552BB6669200A1C514 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		468634572BB6669400A1C514 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -39,7 +53,7 @@
 		4686346A2BB6680D00A1C514 /* SampleEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleEvent.swift; sourceTree = "<group>"; };
 		468634722BB672EC00A1C514 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		468634752BB676BE00A1C514 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
-		468634772BB6ABE900A1C514 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GridView.swift; path = OnThisDay/Views/GridView.swift; sourceTree = "<group>"; };
+		468634772BB6ABE900A1C514 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +70,6 @@
 		468634472BB6669200A1C514 = {
 			isa = PBXGroup;
 			children = (
-				468634772BB6ABE900A1C514 /* GridView.swift */,
 				468634522BB6669200A1C514 /* OnThisDay */,
 				468634512BB6669200A1C514 /* Products */,
 			);
@@ -65,7 +78,7 @@
 		468634512BB6669200A1C514 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				468634502BB6669200A1C514 /* OnThisDay.app */,
+				468634502BB6669200A1C514 /* On This Day.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +92,7 @@
 				468634532BB6669200A1C514 /* OnThisDayApp.swift */,
 				468634742BB676B100A1C514 /* Views */,
 				468634572BB6669400A1C514 /* Assets.xcassets */,
+				460DF08A2BBA6D9E00EA5E6C /* Credits.html */,
 				4686345C2BB6669400A1C514 /* OnThisDay.entitlements */,
 				468634592BB6669400A1C514 /* Preview Content */,
 			);
@@ -109,6 +123,7 @@
 				468634662BB6680D00A1C514 /* Day.swift */,
 				468634672BB6680D00A1C514 /* Event.swift */,
 				468634682BB6680D00A1C514 /* EventLink.swift */,
+				460DF0882BBA65BC00EA5E6C /* DisplayMode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -116,9 +131,15 @@
 		468634742BB676B100A1C514 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				468634772BB6ABE900A1C514 /* GridView.swift */,
 				468634552BB6669200A1C514 /* ContentView.swift */,
 				468634722BB672EC00A1C514 /* SidebarView.swift */,
 				468634752BB676BE00A1C514 /* EventView.swift */,
+				460DF07E2BBA652600EA5E6C /* TableView.swift */,
+				460DF0802BBA653600EA5E6C /* DayPicker.swift */,
+				460DF0822BBA654F00EA5E6C /* PreferencesView.swift */,
+				460DF0842BBA657600EA5E6C /* Menus.swift */,
+				460DF0862BBA657E00EA5E6C /* Toolbar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -140,7 +161,7 @@
 			);
 			name = OnThisDay;
 			productName = OnThisDay;
-			productReference = 468634502BB6669200A1C514 /* OnThisDay.app */;
+			productReference = 468634502BB6669200A1C514 /* On This Day.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -182,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4686345B2BB6669400A1C514 /* Preview Assets.xcassets in Resources */,
+				460DF08B2BBA6D9E00EA5E6C /* Credits.html in Resources */,
 				468634582BB6669400A1C514 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,13 +219,19 @@
 				4686346D2BB6680D00A1C514 /* AppState.swift in Sources */,
 				468634762BB676BE00A1C514 /* EventView.swift in Sources */,
 				468634702BB6680D00A1C514 /* EventLink.swift in Sources */,
+				460DF0812BBA653600EA5E6C /* DayPicker.swift in Sources */,
 				4686346E2BB6680D00A1C514 /* Day.swift in Sources */,
 				4686346C2BB6680D00A1C514 /* String_decoded.swift in Sources */,
 				468634542BB6669200A1C514 /* OnThisDayApp.swift in Sources */,
 				4686346F2BB6680D00A1C514 /* Event.swift in Sources */,
+				460DF0892BBA65BC00EA5E6C /* DisplayMode.swift in Sources */,
+				460DF07F2BBA652600EA5E6C /* TableView.swift in Sources */,
+				460DF0872BBA657E00EA5E6C /* Toolbar.swift in Sources */,
+				460DF0832BBA654F00EA5E6C /* PreferencesView.swift in Sources */,
 				468634732BB672EC00A1C514 /* SidebarView.swift in Sources */,
 				468634712BB6680D00A1C514 /* SampleEvent.swift in Sources */,
 				468634782BB6ABE900A1C514 /* GridView.swift in Sources */,
+				460DF0852BBA657600EA5E6C /* Menus.swift in Sources */,
 				4686346B2BB6680D00A1C514 /* Networker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,7 +378,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.G0SU19O2.OnThisDay;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "On This Day";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -377,7 +405,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.G0SU19O2.OnThisDay;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "On This Day";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};

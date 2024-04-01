@@ -9,11 +9,25 @@ import SwiftUI
 
 @main
 struct OnThisDayApp: App {
-    @StateObject private var appState = AppState()
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environmentObject(appState)
+  @StateObject var appState = AppState()
+  @AppStorage("displayMode") var displayMode = DisplayMode.auto
+
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
+        .environmentObject(appState)
+        .onAppear {
+          DisplayMode.changeDisplayMode(to: displayMode)
         }
+        .onChange(of: displayMode, { _, newValue in
+            DisplayMode.changeDisplayMode(to: newValue)
+        })
     }
+    .commands {
+      Menus()
+    }
+      Settings {
+          PreferencesView()
+      }
+  }
 }

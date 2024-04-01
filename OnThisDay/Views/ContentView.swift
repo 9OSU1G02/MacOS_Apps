@@ -1,43 +1,78 @@
-//
-//  ContentView.swift
-//  OnThisDay
-//
-//  Created by Quốc Huy Nguyễn on 29/3/24.
-//
+/*
+
+ ContentView.swift
+ OnThisDay
+
+ Created by Quốc Huy Nguyễn on 29/3/24.
+
+ */
+
+import SwiftUI
 
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection: EventType? = .events
-    @EnvironmentObject var appState: AppState
-    var events: [Event] {
-        appState.dataFor(eventType: selection)
+  @EnvironmentObject var appState: AppState
+
+  @SceneStorage("eventType") var eventType: EventType?
+  @SceneStorage("searchText") var searchText = ""
+  @SceneStorage("viewMode") var viewMode: ViewMode = .grid
+  @SceneStorage("selectedDate") var selectedDate: String?
+
+  var body: some View {
+    NavigationView {
+      SidebarView(selection: $eventType)
+
+      if viewMode == .table {
+        TableView(tableData: events)
+      } else {
+        GridView(gridData: events)
+      }
+    }
+    .frame(
+      minWidth: 700,
+      idealWidth: 1000,
+      maxWidth: .infinity,
+      minHeight: 400,
+      idealHeight: 800,
+      maxHeight: .infinity)
+    .navigationTitle(windowTitle)
+    .toolbar(id: "mainToolbar") {
+      Toolbar(viewMode: $viewMode)
+    }
+    .searchable(text: $searchText)
+    .onAppear {
+      if eventType == nil {
+        eventType = .events
+      }
+    }
+  }
+
+  var events: [Event] {
+    appState.dataFor(
+      eventType: eventType,
+      date: selectedDate,
+      searchText: searchText)
+  }
+
+  var windowTitle: String {
+    var title = "On This Day"
+
+    if let eventType = eventType {
+      title += " - \(eventType.rawValue)"
     }
 
-    var windowTitle: String {
-        if let eventType = selection {
-            return "On This Day - \(eventType.rawValue)"
-        }
-        return "On This Day"
+    if let selectedDate = selectedDate {
+      title += " - \(selectedDate)"
+    } else {
+      title += " - Today"
     }
 
-    var body: some View {
-        NavigationView {
-            SidebarView(selection: $selection)
-            GridView(gridData: events)
-        }
-        .frame(
-            minWidth: 700,
-            idealWidth: 1000,
-            maxWidth: .infinity,
-            minHeight: 400,
-            idealHeight: 800,
-            maxHeight: .infinity)
-        .navigationTitle(windowTitle)
-    }
+    return title
+  }
 }
 
-#Preview {
-    ContentView()
-        .environmentObject(AppState())
+enum ViewMode: Int {
+  case grid
+  case table
 }
