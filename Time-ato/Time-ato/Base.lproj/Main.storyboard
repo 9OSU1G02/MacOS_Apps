@@ -17,19 +17,28 @@
                                         <menuItem title="About Time-ato" id="mUo-np-7se">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="63s-m5-CRd"/>
+                                                <action selector="showAbout:" target="Voe-Tx-rLC" id="p5b-j0-pPO"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="c57-UO-d8e"/>
                                         <menuItem isSeparatorItem="YES" id="MrT-3h-jH4"/>
                                         <menuItem title="Start Next Task" id="aKw-O2-zR5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="startStopTask:" target="Voe-Tx-rLC" id="Mcd-jE-ttT"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Edit Tasks…" id="UDP-6B-mJu">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showEditTasksWindow:" target="Voe-Tx-rLC" id="qqe-Pl-c5O"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Launch on Login" id="FfT-x1-BDS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleLaunchOnLogin:" target="Voe-Tx-rLC" id="xsp-jN-PgZ"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="hzZ-bA-3G3"/>
                                         <menuItem title="Quit Time-ato" id="lEJ-OI-4kn">

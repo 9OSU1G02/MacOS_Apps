@@ -20,6 +20,9 @@
 		4656833E2BC39841001E821D /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656833D2BC39841001E821D /* TimerState.swift */; };
 		465683422BC39870001E821D /* Alerter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656833F2BC39870001E821D /* Alerter.swift */; };
 		465683432BC39870001E821D /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465683402BC39870001E821D /* Notifier.swift */; };
+		465683452BC39DB8001E821D /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465683442BC39DB8001E821D /* DataStore.swift */; };
+		465683482BC3AE6D001E821D /* EditTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465683472BC3AE6D001E821D /* EditTasksView.swift */; };
+		4656835D2BC40340001E821D /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4656835C2BC40340001E821D /* LaunchAtLogin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,8 @@
 		4656833D2BC39841001E821D /* TimerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		4656833F2BC39870001E821D /* Alerter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerter.swift; sourceTree = "<group>"; };
 		465683402BC39870001E821D /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
+		465683442BC39DB8001E821D /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		465683472BC3AE6D001E821D /* EditTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTasksView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4656835D2BC40340001E821D /* LaunchAtLogin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +76,7 @@
 		460DF0B22BBAA44C00EA5E6C /* Time-ato */ = {
 			isa = PBXGroup;
 			children = (
-				4656833B2BC397FF001E821D /* TaskView.swift */,
+				465683462BC3AE5E001E821D /* Views */,
 				465683412BC39870001E821D /* Interactions */,
 				465683372BC397DD001E821D /* Managers */,
 				460DF0C52BBAB7C700EA5E6C /* Models */,
@@ -85,6 +91,7 @@
 		460DF0C52BBAB7C700EA5E6C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				465683442BC39DB8001E821D /* DataStore.swift */,
 				4656833D2BC39841001E821D /* TimerState.swift */,
 				460DF0C22BBAB7C700EA5E6C /* Task.swift */,
 				460DF0C32BBAB7C700EA5E6C /* TaskStatus.swift */,
@@ -112,6 +119,15 @@
 			path = Interactions;
 			sourceTree = "<group>";
 		};
+		465683462BC3AE5E001E821D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4656833B2BC397FF001E821D /* TaskView.swift */,
+				465683472BC3AE6D001E821D /* EditTasksView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,12 +138,16 @@
 				460DF0AC2BBAA44C00EA5E6C /* Sources */,
 				460DF0AD2BBAA44C00EA5E6C /* Frameworks */,
 				460DF0AE2BBAA44C00EA5E6C /* Resources */,
+				4656835E2BC4037F001E821D /* Launch at Login Helper */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Time-ato";
+			packageProductDependencies = (
+				4656835C2BC40340001E821D /* LaunchAtLogin */,
+			);
 			productName = "Time-ato";
 			productReference = 460DF0B02BBAA44C00EA5E6C /* Time-ato.app */;
 			productType = "com.apple.product-type.application";
@@ -156,6 +176,9 @@
 				Base,
 			);
 			mainGroup = 460DF0A72BBAA44C00EA5E6C;
+			packageReferences = (
+				4656835B2BC40340001E821D /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+			);
 			productRefGroup = 460DF0B12BBAA44C00EA5E6C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -177,12 +200,36 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4656835E2BC4037F001E821D /* Launch at Login Helper */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Launch at Login Helper";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		460DF0AC2BBAA44C00EA5E6C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				465683482BC3AE6D001E821D /* EditTasksView.swift in Sources */,
 				4656833C2BC397FF001E821D /* TaskView.swift in Sources */,
+				465683452BC39DB8001E821D /* DataStore.swift in Sources */,
 				465683432BC39870001E821D /* Notifier.swift in Sources */,
 				465683382BC397DD001E821D /* MenuManager.swift in Sources */,
 				465683392BC397DD001E821D /* TaskManager.swift in Sources */,
@@ -247,7 +294,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -310,7 +357,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -406,6 +453,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4656835B2BC40340001E821D /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4656835C2BC40340001E821D /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4656835B2BC40340001E821D /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 460DF0A82BBAA44C00EA5E6C /* Project object */;
 }

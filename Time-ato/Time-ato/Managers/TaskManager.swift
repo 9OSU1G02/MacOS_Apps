@@ -1,126 +1,140 @@
 
 
-import Combine
 import AppKit
+import Combine
 
 class TaskManager {
-  var tasks: [Task] = Task.sampleTasks
-  var timerCancellable: AnyCancellable?
-  var timerState = TimerState.waiting
-
-  // Switch comments to change interactions
-  // Change checkForBreakFinish(startTime:duration:) too
-  let interaction = Alerter()
-  // let interaction = Notifier()
-
-  init() {
-    startTimer()
-  }
-
-  func startTimer() {
-    timerCancellable = Timer
-      .publish(
-        every: 1,
-        tolerance: 0.5,
-        on: .current,
-        in: .common)
-      .autoconnect()
-      .sink { _ in
-        self.checkTimings()
-      }
-  }
-
-  func toggleTask() {
-    if let activeTaskIndex = timerState.activeTaskIndex {
-      stopRunningTask(at: activeTaskIndex)
-    } else {
-      startNextTask()
-    }
-  }
-
-  func startNextTask() {
-    let nextTaskIndex = tasks.firstIndex {
-      $0.status == .notStarted
-    }
-    if let nextTaskIndex = nextTaskIndex {
-      tasks[nextTaskIndex].start()
-      timerState = .runningTask(taskIndex: nextTaskIndex)
-    }
-  }
-
-  func stopRunningTask(at taskIndex: Int) {
-    tasks[taskIndex].complete()
-    timerState = .waiting
-
-    if taskIndex < tasks.count - 1 {
-      startBreak(after: taskIndex)
-    }
-  }
-
-  func checkTimings() {
-    let taskIsRunning = timerState.activeTaskIndex != nil
-
-    switch timerState {
-    case .runningTask(let taskIndex):
-      checkForTaskFinish(activeTaskIndex: taskIndex)
-    case
-      .takingShortBreak(let startTime),
-      .takingLongBreak(let startTime):
-      if let breakDuration = timerState.breakDuration {
-        checkForBreakFinish(
-          startTime: startTime,
-          duration: breakDuration)
-      }
-    default:
-      break
+    var tasks: [Task]
+    var timerCancellable: AnyCancellable?
+    var timerState = TimerState.waiting
+    let dataStore = DataStore()
+    // Switch comments to change interactions
+    // Change checkForBreakFinish(startTime:duration:) too
+    let interaction = Alerter()
+    // let interaction = Notifier()
+    var refreshNeededSub: AnyCancellable?
+    
+    init() {
+        tasks = dataStore.readTasks()
+        let activeTaskIndex = tasks.firstIndex {
+            $0.status == .inProgress
+        }
+        if let activeTaskIndex = activeTaskIndex {
+            timerState = .runningTask(taskIndex: activeTaskIndex)
+        }
+        startTimer()
+        refreshNeededSub = NotificationCenter.default
+            .publisher(for: .dataRefreshNeeded)
+            .sink { _ in
+                self.tasks = self.dataStore.readTasks()
+            }
     }
 
-    if let appDelegate = NSApp.delegate as? AppDelegate {
-      let (title, icon) = menuTitleAndIcon
-      appDelegate.updateMenu(
-        title: title,
-        icon: icon,
-        taskIsRunning: taskIsRunning)
+    func startTimer() {
+        timerCancellable = Timer
+            .publish(
+                every: 1,
+                tolerance: 0.5,
+                on: .current,
+                in: .common)
+            .autoconnect()
+            .sink { _ in
+                self.checkTimings()
+            }
     }
-  }
 
-  func checkForTaskFinish(activeTaskIndex: Int) {
-    let activeTask = tasks[activeTaskIndex]
-    if activeTask.progressPercent >= 100 {
-      if activeTaskIndex == tasks.count - 1 {
-        interaction.allTasksComplete()
-      } else {
-        interaction.taskComplete(
-          title: activeTask.title,
-          index: activeTaskIndex)
-      }
-      stopRunningTask(at: activeTaskIndex)
+    func toggleTask() {
+        if let activeTaskIndex = timerState.activeTaskIndex {
+            stopRunningTask(at: activeTaskIndex)
+        } else {
+            startNextTask()
+        }
     }
-  }
 
-  func checkForBreakFinish(startTime: Date, duration: TimeInterval) {
-    let elapsedTime = -startTime.timeIntervalSinceNow
-    if elapsedTime >= duration {
-      timerState = .waiting
-
-      // Un-comment if using Alerter
-      let response = interaction.breakOver()
-      if response == .alertFirstButtonReturn {
-        startNextTask()
-      }
-
-      // Un-comment if using Notifier
-      //  interaction.startNextTaskFunc = startNextTask
-      //  interaction.breakOver()
+    func startNextTask() {
+        let nextTaskIndex = tasks.firstIndex {
+            $0.status == .notStarted
+        }
+        if let nextTaskIndex = nextTaskIndex {
+            tasks[nextTaskIndex].start()
+            timerState = .runningTask(taskIndex: nextTaskIndex)
+        }
+        dataStore.save(tasks: tasks)
     }
-  }
 
-  func startBreak(after index: Int) {
-    let oneSecondFromNow = Date(timeIntervalSinceNow: 1)
-    if (index + 1).isMultiple(of: 4) {
-      timerState = .takingLongBreak(startTime: oneSecondFromNow)
-    } else {
-      timerState = .takingShortBreak(startTime: oneSecondFromNow)
+    func stopRunningTask(at taskIndex: Int) {
+        tasks[taskIndex].complete()
+        timerState = .waiting
+
+        if taskIndex < tasks.count - 1 {
+            startBreak(after: taskIndex)
+        }
     }
-  }
+
+    func checkTimings() {
+        let taskIsRunning = timerState.activeTaskIndex != nil
+
+        switch timerState {
+        case .runningTask(let taskIndex):
+            checkForTaskFinish(activeTaskIndex: taskIndex)
+        case
+            .takingShortBreak(let startTime),
+            .takingLongBreak(let startTime):
+            if let breakDuration = timerState.breakDuration {
+                checkForBreakFinish(
+                    startTime: startTime,
+                    duration: breakDuration)
+            }
+        default:
+            break
+        }
+
+        if let appDelegate = NSApp.delegate as? AppDelegate {
+            let (title, icon) = menuTitleAndIcon
+            appDelegate.updateMenu(
+                title: title,
+                icon: icon,
+                taskIsRunning: taskIsRunning)
+        }
+    }
+
+    func checkForTaskFinish(activeTaskIndex: Int) {
+        let activeTask = tasks[activeTaskIndex]
+        if activeTask.progressPercent >= 100 {
+            if activeTaskIndex == tasks.count - 1 {
+                interaction.allTasksComplete()
+            } else {
+                interaction.taskComplete(
+                    title: activeTask.title,
+                    index: activeTaskIndex)
+            }
+            stopRunningTask(at: activeTaskIndex)
+        }
+    }
+
+    func checkForBreakFinish(startTime: Date, duration: TimeInterval) {
+        let elapsedTime = -startTime.timeIntervalSinceNow
+        if elapsedTime >= duration {
+            timerState = .waiting
+
+            // Un-comment if using Alerter
+            let response = interaction.breakOver()
+            if response == .alertFirstButtonReturn {
+                startNextTask()
+            }
+
+            // Un-comment if using Notifier
+            //  interaction.startNextTaskFunc = startNextTask
+            //  interaction.breakOver()
+        }
+    }
+
+    func startBreak(after index: Int) {
+        let oneSecondFromNow = Date(timeIntervalSinceNow: 1)
+        if (index + 1).isMultiple(of: 4) {
+            timerState = .takingLongBreak(startTime: oneSecondFromNow)
+        } else {
+            timerState = .takingShortBreak(startTime: oneSecondFromNow)
+        }
+    }
 }

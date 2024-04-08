@@ -6,6 +6,8 @@
 //
 
 import Cocoa
+import SwiftUI
+import LaunchAtLogin
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -49,11 +51,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   @IBAction func showEditTasksWindow(_ sender: Any) {
+      let hostingController = NSHostingController(rootView: EditTasksView())
+      let window = NSWindow(contentViewController: hostingController)
+      window.title = "Edit Tasks"
+      
+      let controller = NSWindowController(window: window)
+      NSApp.activate(ignoringOtherApps: true)
+      controller.showWindow(nil)
   }
 
   @IBAction func toggleLaunchOnLogin(_ sender: Any) {
+      LaunchAtLogin.isEnabled.toggle()
   }
 
+    @IBAction func showAbout(_ sender: NSMenuItem) {
+        NSApp.orderFrontStandardAboutPanel(nil)
+    }
+    
+    
   func updateMenu(title: String, icon: String, taskIsRunning: Bool) {
     statusItem?.button?.title = title
     statusItem?.button?.image =
@@ -72,5 +87,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     } else {
       startStopMenuItem.title = "Start Next Task"
     }
+      launchOnLoginMenuItem.state = LaunchAtLogin.isEnabled ? .on : .off
   }
 }
