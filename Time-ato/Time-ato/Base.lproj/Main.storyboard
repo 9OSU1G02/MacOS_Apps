@@ -10,32 +10,32 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="Time-ato" id="1Xt-HY-uBw">
+                            <menuItem title="Time-ato" id="hg9-ge-mrF">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Time-ato" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Time-ato" systemMenu="apple" autoenablesItems="NO" id="arX-Zp-XLW">
                                     <items>
-                                        <menuItem title="About Time-ato" id="5kV-Vb-QxS">
+                                        <menuItem title="About Time-ato" id="mUo-np-7se">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="63s-m5-CRd"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Start Next Task" id="60p-pR-6ab">
+                                        <menuItem isSeparatorItem="YES" id="c57-UO-d8e"/>
+                                        <menuItem isSeparatorItem="YES" id="MrT-3h-jH4"/>
+                                        <menuItem title="Start Next Task" id="aKw-O2-zR5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Edit Tasks…" id="W0h-dZ-Kbh">
+                                        <menuItem title="Edit Tasks…" id="UDP-6B-mJu">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Launch on Login" id="hzH-1k-AzM">
+                                        <menuItem title="Launch on Login" id="FfT-x1-BDS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="EIn-Zk-YZ1"/>
-                                        <menuItem title="Quit Time-ato" id="4sb-4s-VLi">
+                                        <menuItem isSeparatorItem="YES" id="hzZ-bA-3G3"/>
+                                        <menuItem title="Quit Time-ato" id="lEJ-OI-4kn">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
+                                                <action selector="terminate:" target="Ady-hI-5gd" id="zOL-jK-bMx"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -49,7 +49,9 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Time_ato" customModuleProvider="target">
                     <connections>
-                        <outlet property="statusMenu" destination="uQy-DD-JDr" id="42n-xp-LFP"/>
+                        <outlet property="launchOnLoginMenuItem" destination="FfT-x1-BDS" id="NKL-Xu-ffX"/>
+                        <outlet property="startStopMenuItem" destination="aKw-O2-zR5" id="aM4-SW-osu"/>
+                        <outlet property="statusMenu" destination="arX-Zp-XLW" id="ODn-Iv-ZPC"/>
                     </connections>
                 </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
